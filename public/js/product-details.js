@@ -98,11 +98,12 @@ productCounter.addEventListener('change', (e) => {
 })
 
 productCounter.oninput = (e) => {
-    if (parseInt(e.target.value) > inStock || e.target.max > inStock) {
+    if (parseInt(e.target.value) > e.target.max) {
         if(getCookie(id))
             e.target.max = inStock - getCookie(id)
         else
             e.target.max = inStock
+            
         e.target.value = e.target.max
     }
     productPrice.innerHTML = '$' + (productCounter.value * price) + ".00";
@@ -124,6 +125,7 @@ addBtn.addEventListener('click', () => {
             addBtn.remove()
             productCounter.remove()
         }
+        productCounter.value = 1
         allStorage()
     }
 })
